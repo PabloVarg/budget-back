@@ -1,0 +1,6 @@
+{
+    "*": {
+        "start": "docker-compose up --build ; docker-compose down",
+        "shell": "docker-compose exec django python manage.py shell"
+    }
+}

@@ -1,0 +1,28 @@
+version: '3'
+
+services:
+  django:
+    container_name: django
+    build:
+      dockerfile: .config/django/Dockerfile
+    depends_on:
+      - db
+    restart: always
+    env_file:
+        - .config/django/.env
+    volumes:
+      - .:/app
+    ports:
+      - 8000:8000
+
+  db:
+    container_name: db
+    image: postgres:16.0-alpine3.18
+    restart: always
+    env_file:
+        - .config/django/.env
+    volumes:
+      - data:/var/lib/postgresql/data/
+
+volumes:
+  data:
